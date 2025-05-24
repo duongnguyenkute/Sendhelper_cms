@@ -12,5 +12,8 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["src/importCsv.ts"]
+  "include": [
+  "src/importCsv.ts",
+  "src/importMedia.ts"
+]
 } 

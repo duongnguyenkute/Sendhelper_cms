@@ -6,7 +6,7 @@ export const seedHomeTips = async (payload: Payload) => {
     // Check if data already exists
     const existingTips = await payload.find({
       collection: 'home-tips',
-      limit: 1,
+      
     });
 
     if (existingTips.docs.length > 0) {

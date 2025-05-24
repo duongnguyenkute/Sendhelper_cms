@@ -7,7 +7,10 @@ export const HomeTips: CollectionConfig = {
     defaultColumns: ['title', 'category', 'published_date'],
   },
   access: {
-    read: () => true, // Public read access
+    read: () => true,
+    update: () => true,
+    delete: () => true,
+    create: () => true,
     
   },
   fields: [

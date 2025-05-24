@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     'home-tips': HomeTip;
+    blogs: Blog;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'home-tips': HomeTipsSelect<false> | HomeTipsSelect<true>;
+    blogs: BlogsSelect<false> | BlogsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -138,7 +140,7 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -150,6 +152,32 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -164,6 +192,31 @@ export interface HomeTip {
   category: 'Home Tips' | 'Blog' | 'Home Projects & DIY' | 'Singapore Living';
   url: string;
   img: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs".
+ */
+export interface Blog {
+  id: number;
+  name: string;
+  slug: string;
+  publishedDate: string;
+  /**
+   * Multiple categories separated by commas
+   */
+  categories?: string | null;
+  /**
+   * URL hoặc đường dẫn hình ảnh dưới dạng chuỗi
+   */
+  thumbnailImage?: string | null;
+  postSummary?: string | null;
+  /**
+   * Optional single category label
+   */
+  category?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -185,6 +238,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'home-tips';
         value: number | HomeTip;
+      } | null)
+    | ({
+        relationTo: 'blogs';
+        value: number | Blog;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -260,6 +317,40 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -273,6 +364,21 @@ export interface HomeTipsSelect<T extends boolean = true> {
   category?: T;
   url?: T;
   img?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogs_select".
+ */
+export interface BlogsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  publishedDate?: T;
+  categories?: T;
+  thumbnailImage?: T;
+  postSummary?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -19,7 +19,7 @@ const FooterPay = () => {
   return (
     <footer className="lg:pt-2.5 flex flex-col gap-1 lg:w-1/4">
       <h4 className="mb-2.5 text-base leading-6 font-semibold">Ways to pay</h4>
-      <div className="grid grid-cols-12 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-6 lg:grid-cols-4 gap-4">
         {paymentMethods.map((method, index) => (
           <div key={index} className=" h-auto">
             <img src={method.src} alt={method.alt} className="object-contain" />

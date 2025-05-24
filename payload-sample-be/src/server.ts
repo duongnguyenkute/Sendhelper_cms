@@ -1,18 +1,22 @@
-import express from 'express';
-import payload from 'payload';
+import express, { Request, Response } from 'express';
+import cors from 'cors';
 
 const app = express();
+const PORT = 3000;
 
-app.use(express.json());
+// CORS: cho phép frontend localhost:3001 truy cập
+app.use(cors({
+  origin: 'http://localhost:3001',
+}));
 
-payload.init({
-  // Không truyền secret ở đây nữa
-  // secret: process.env.PAYLOAD_SECRET || 'devsecretkey', // bỏ dòng này
-  mongoURL: '', // hoặc để trống nếu dùng postgres
-  express: app,
-  onInit: () => {
-    app.listen(3000, () => {
-      console.log('Server running on http://localhost:3000/admin');
-    });
-  },
+app.get('/api/home-tips', (req: Request, res: Response) => {
+  res.json([
+    { id: 1, tip: 'Always write clean code' },
+    { id: 2, tip: 'Use version control' },
+    { id: 3, tip: 'Test your components' },
+  ]);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });

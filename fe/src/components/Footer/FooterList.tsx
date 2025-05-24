@@ -23,7 +23,7 @@ const footerData = [
 
 const FooterList = () => {
   return (
-    <nav aria-label="Footer navigation" className="flex gap-6 md:gap-8 lg:w-1/2">
+    <nav aria-label="Footer navigation" className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:w-1/2">
       {footerData.map(({ title, links }) => (
         <div key={title} className="flex flex-col gap-1 lg:w-1/2">
           <h4 className="my-2.5 text-base leading-6 font-semibold">{title}</h4>
