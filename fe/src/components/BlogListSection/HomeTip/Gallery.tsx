@@ -5,8 +5,8 @@ import RevealOnScroll from '@/components/RevealOnScroll';
 const Gallery = () => {
 
   return (
-    <div className='px-[5%] mt-16 mb-50 bg-tertiary max-h-62.5'>
-      <div className='p-4  max-w-320 mx-auto'>
+    <div className='px-[5%] mt-16 mb-90 lg:mb-50 bg-tertiary max-h-62.5'>
+      <div className='p-4 max-w-320 mx-auto'>
         <div className='pt-8 lg:px-auto'>
           <div>
             <p className='text-primary uppercase font-semibold text-sm leading-7'>sendhelper</p>
