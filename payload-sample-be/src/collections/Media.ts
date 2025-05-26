@@ -3,7 +3,7 @@ import { CollectionConfig } from 'payload';
 export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
-    staticDir: 'media-images', // Thư mục chứa hình ảnh
+    staticDir: 'media-images', 
     imageSizes: [
       {
         name: 'thumbnail',
@@ -20,7 +20,7 @@ export const Media: CollectionConfig = {
       {
         name: 'tablet',
         width: 1024,
-        height: undefined, // Tự động tính toán chiều cao dựa trên tỷ lệ khung hình
+        height: undefined, 
         position: 'centre',
       },
     ],

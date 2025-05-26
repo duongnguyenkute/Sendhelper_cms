@@ -3,10 +3,10 @@ import { CollectionConfig } from 'payload';
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
   access: {
-    create: () => true,  // Cho phép tạo mới bất cứ ai (bạn có thể thay đổi điều kiện ở đây)
-    read: () => true,    // Cho phép đọc
-    update: () => true,  // Cho phép cập nhật
-    delete: () => true,  // Cho phép xóa
+    create: () => true,  
+    read: () => true,    
+    update: () => true,  
+    delete: () => true,  
   },
   admin: {
     useAsTitle: 'name',
@@ -53,7 +53,7 @@ export const Blogs: CollectionConfig = {
       name: 'thumbnailImage',
       type: 'text',
       admin: {
-        description: 'URL hoặc đường dẫn hình ảnh dưới dạng chuỗi',
+        description: 'URL or String',
       },
     },
     {

@@ -24,7 +24,7 @@ const config = buildConfig({
   secret: process.env.PAYLOAD_SECRET || '2da3e0356448d3948f37c8f8',
 });
 
-// Hàm generate slug đơn giản
+
 function generateSlug(text: string): string {
   return text
     .toLowerCase()
