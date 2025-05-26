@@ -1,46 +1,52 @@
-// hoc/withRevealOnScroll.tsx
-import React, { useEffect, useState } from 'react';
+"use client";
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface WithRevealOptions {
   duration?: number;
   threshold?: number;
+  delay?: number;
 }
 
 const withRevealOnScroll = <P extends object>(
   WrappedComponent: React.ComponentType<P>,
   options: WithRevealOptions = {}
 ) => {
-  const { duration = 0.4, threshold = 0.3 } = options;
+  const { duration = 0.5, threshold = 0.3, delay = 0 } = options;
+
+  const variants: Variants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration,
+        delay,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
 
   const ComponentWithReveal = (props: P) => {
-    const [open, setOpen] = useState(false);
-    const { ref, inView } = useInView({ threshold });
-
-    useEffect(() => {
-      setOpen(inView);
-    }, [inView]);
+    const { ref, inView } = useInView({ threshold, triggerOnce: false });
 
     return (
-      <div ref={ref}>
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              key="hoc-reveal"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{
-                duration,
-                ease: [0.25, 0.8, 0.25, 1],
-              }}
-            >
-              <WrappedComponent {...props} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        variants={variants}
+        style={{ willChange: 'opacity, transform' }}
+      >
+        <WrappedComponent {...props} />
+      </motion.div>
     );
   };
 

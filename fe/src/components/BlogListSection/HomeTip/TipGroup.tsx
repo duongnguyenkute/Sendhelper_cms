@@ -4,6 +4,7 @@ import SubTipCard from "./SubTipCard";
 import OtherTipCard from "./OtherTipCard";
 import { HomeTip } from "@/types/home-tip";
 
+
 interface TipGroupProps {
   mainTip?: HomeTip;
   subTips: HomeTip[];
@@ -12,10 +13,10 @@ interface TipGroupProps {
 }
 
 const TipGroup: React.FC<TipGroupProps> = ({ mainTip, subTips, otherTips, reverse = false }) => (
-  <div className=" px-[5%] mt-5 lg:mt-8 w-full max-w-320 mx-auto xl:pl-0">
+  <div className=" px-[5%] mt-5 lg:mt-8 w-full max-w-320 mx-auto xl:px-0">
     <div className={`flex flex-col lg:flex-row gap-8 ${reverse ? "lg:flex-row-reverse" : ""}`}>
       {mainTip && (
-        <div className="">
+        <div className="lg:w-4/10">
           <a href="#" target="_blank" rel="noopener noreferrer">
             <MainTipCard tip={mainTip} />
           </a>
@@ -23,7 +24,7 @@ const TipGroup: React.FC<TipGroupProps> = ({ mainTip, subTips, otherTips, revers
       )}
 
       {subTips.length > 0 && (
-        <div className="lg:w-7/10 flex flex-col lg:py-0 gap-8 py-5">
+        <div className="lg:w-6/10 flex flex-col lg:py-0 gap-8 py-5">
           {subTips.map((tip) => (
             <a
               className="h-full"

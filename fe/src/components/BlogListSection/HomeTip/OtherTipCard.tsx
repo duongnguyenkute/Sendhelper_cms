@@ -1,13 +1,14 @@
 // OtherTipCard.tsx
 import { HomeTip } from "@/types/home-tip";
 import React from "react";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 const OtherTipCard = ({ tip }: { tip: HomeTip }) => {
 
 
   return (
     <div className="shadow-md rounded-xl cursor-pointer overflow-hidden h-full flex flex-col">
-      {tip.thumbnailImage && <img src={tip.thumbnailImage} alt={tip.name} className="w-full h-48 object-cover" />}
+      <img src={ tip.thumbnailImage || "/images/general-img.webp" } alt={tip.name} className="w-full h-48 object-cover" />
       <div className="p-4 flex flex-col justify-between flex-1">
         <div className="mt-2">
           <p className="text-quaternary text-sm">{tip.category}</p>
@@ -30,4 +31,4 @@ const OtherTipCard = ({ tip }: { tip: HomeTip }) => {
   );
 };
 
-export default OtherTipCard;
+export default RevealOnScroll(OtherTipCard);

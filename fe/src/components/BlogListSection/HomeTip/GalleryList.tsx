@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GalleryItem from './GalleryItem'
-
+import RevealOnScroll from '@/components/RevealOnScroll'
 const galleryList = [
   { img: "/images/gallery1.svg", title: "Cleaning" },
   { img: "/images/gallery2.svg", title: "Deep Cleaning" },
@@ -45,4 +45,4 @@ const GalleryList = () => {
   )
 }
 
-export default GalleryList
+export default RevealOnScroll(GalleryList);

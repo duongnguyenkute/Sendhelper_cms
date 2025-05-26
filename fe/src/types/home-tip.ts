@@ -1,11 +1,11 @@
 export interface HomeTip {
     name: string;
     slug: string;
-    publishedDate: string;        // ISO date string
+    publishedDate: string;        
     categories: string;
     thumbnailImage: string | null;
     postSummary: string | null;
     category: string;
-    updatedAt: string;            // ISO date string
+    updatedAt: string;            
     createdAt: string; 
   }

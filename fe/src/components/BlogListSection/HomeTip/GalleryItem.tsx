@@ -1,5 +1,5 @@
 import React from 'react'
-
+import RevealOnScroll from '@/components/RevealOnScroll'
 interface GalleryItemProps {
   img: string;
   title: string;      
@@ -24,4 +24,4 @@ const GalleryItem = ({ img, title }: GalleryItemProps) => {
   )
 }
 
-export default GalleryItem
+export default RevealOnScroll(GalleryItem); 

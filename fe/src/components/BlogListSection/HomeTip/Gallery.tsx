@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import GalleryList from './GalleryList';
-
+import RevealOnScroll from '@/components/RevealOnScroll';
 
 const Gallery = () => {
 
@@ -22,4 +22,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default RevealOnScroll(Gallery);

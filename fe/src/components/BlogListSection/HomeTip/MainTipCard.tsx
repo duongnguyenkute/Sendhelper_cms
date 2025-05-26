@@ -1,6 +1,7 @@
 import React from 'react'
 import { HomeTip } from '@/types/home-tip'
 import { formatDate } from '@/utils/date'
+import RevealOnScroll from "@/components/RevealOnScroll"
 const MainTipCard = ({tip}: {tip: HomeTip}) => {
 
   return (
@@ -21,4 +22,4 @@ const MainTipCard = ({tip}: {tip: HomeTip}) => {
   )
 }
 
-export default MainTipCard
+export default RevealOnScroll(MainTipCard); 

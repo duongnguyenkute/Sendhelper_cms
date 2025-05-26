@@ -1,4 +1,6 @@
+"use client"
 import React from 'react'
+import RevealOnScroll from '@/components/RevealOnScroll'
 
 const Search = () => {
   return (
@@ -12,4 +14,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default RevealOnScroll(Search);

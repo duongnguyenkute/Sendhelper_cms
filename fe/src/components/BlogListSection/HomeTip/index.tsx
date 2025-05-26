@@ -8,36 +8,27 @@ import Gallery from "./Gallery";
 const HomeTipPage = () => {
   const [tips, setTips] = useState<HomeTip[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [visibleCountB, setVisibleCountB] = useState(4);
 
   useEffect(() => {
     const fetchTips = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/blogs?limit=100");
-        if (!response.ok) throw new Error("Failed to fetch data");
+      const response = await fetch("http://localhost:3000/api/blogs?limit=100");
+      const data = await response.json();
+      const tipsArray = Array.isArray(data) ? data : data.docs;
 
-        const data = await response.json();
-        const tipsArray = Array.isArray(data) ? data : data.docs;
+      // Lọc chỉ lấy tips có category là "home tips"
+      const filteredTips = tipsArray.filter(
+        (tip: HomeTip) => tip.category?.toLowerCase() === "home tips"
+      );
 
-        if (!Array.isArray(tipsArray)) {
-          throw new Error("Tips data is not an array");
-        }
-
-        setTips(tipsArray);
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || "Failed to fetch tips");
-      } finally {
-        setLoading(false);
-      }
+      setTips(filteredTips);
+      setLoading(false);
     };
 
     fetchTips();
   }, []);
 
   if (loading) return <div className="px-[5%] py-8 text-center">Loading...</div>;
-  if (error) return <div className="px-[5%] py-8 text-center text-red-500">{error}</div>;
 
   const mainTipGroupA = tips[0];
 
