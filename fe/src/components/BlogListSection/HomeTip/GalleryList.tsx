@@ -19,7 +19,7 @@ const GalleryList = () => {
   const itemsToDisplay = showAll ? galleryList : galleryList.slice(0, 6)
 
   return (
-    <div className="relative px-4 py-8 xl:p-12 xl:mt-10 bg-white rounded-2xl shadow-md overflow-hidden">
+    <div className="px-4 lg:px-0 py-8 xl:p-12 xl:mt-10 bg-white rounded-2xl shadow-md overflow-hidden">
       <div className="hidden xl:flex gap-4">
         {galleryList.map((item) => (
           <GalleryItem key={item.title} img={item.img} title={item.title} />

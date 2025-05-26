@@ -28,16 +28,16 @@ const config = buildConfig({
 function generateSlug(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, '')  // loại bỏ ký tự đặc biệt
+    .replace(/[^\w\s-]/g, '')  
     .trim()
-    .replace(/\s+/g, '-')      // thay khoảng trắng thành dấu gạch ngang
+    .replace(/\s+/g, '-')     
 }
 
 interface BlogRecord {
   name: string;
   slug?: string;
   publishedDate?: string;
-  categories?: string;      // ví dụ: "Tech,JavaScript"
+  categories?: string;      
   thumbnailImage?: string;
   postSummary?: string;
   category?: string;
@@ -46,7 +46,7 @@ interface BlogRecord {
 async function importBlogs() {
   try {
     const payload = await getPayload({ config });
-    const csvFilePath = path.join(__dirname, 'Sendhelpers.csv'); // Đường dẫn tới file CSV
+    const csvFilePath = path.join(__dirname, 'Sendhelpers.csv'); 
     const fileContent = fs.readFileSync(csvFilePath, 'utf-8');
 
     const parser = parse(fileContent, {
@@ -55,19 +55,16 @@ async function importBlogs() {
     });
 
     for await (const blog of parser) {
-      // Kiểm tra bắt buộc có name
       const blogName = blog.name || blog.Name;
       if (!blogName) {
         console.warn('Skipping blog with missing name:', blog);
         continue;
       }
 
-      // Xử lý slug
       let slug = blog.slug || blog.Slug || generateSlug(blogName);
       let counter = 1;
       let finalSlug = slug;
 
-      // Check slug uniqueness
       while (true) {
         const existing = await payload.find({
           collection: 'blogs',
@@ -78,18 +75,14 @@ async function importBlogs() {
         counter++;
       }
 
-      // Xử lý categories: convert chuỗi thành mảng string, rồi nối lại thành chuỗi nếu bạn để categories là text
-      // Nếu bạn để categories là mảng object thì sửa lại cho phù hợp
       let categoriesText = undefined;
       if (blog.categories || blog.Categories) {
-        // Nếu trong schema bạn để categories là text, join các category bằng dấu phẩy
         categoriesText = (blog.categories || blog.Categories)
           .split(',')
           .map((c: string) => c.trim())
           .join(', ');
       }
 
-      // Xử lý ngày publish: convert về ISO 8601 string (postgres timestamp yêu cầu định dạng này)
       const dateRaw = blog.publishedDate || blog['Published Date'];
       let publishedDateISO: string | undefined = undefined;
       if (dateRaw) {

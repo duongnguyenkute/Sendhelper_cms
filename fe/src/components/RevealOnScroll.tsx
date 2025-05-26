@@ -44,6 +44,7 @@ const withRevealOnScroll = <P extends object>(
         animate={inView ? 'visible' : 'hidden'}
         variants={variants}
         style={{ willChange: 'opacity, transform' }}
+        className='h-full'
       >
         <WrappedComponent {...props} />
       </motion.div>

@@ -12,7 +12,7 @@ const OtherTipCard = ({ tip }: { tip: HomeTip }) => {
       <div className="p-4 flex flex-col justify-between flex-1">
         <div className="mt-2">
           <p className="text-quaternary text-sm">{tip.category}</p>
-          <p className="my-3 font-semibold lg:font-normal hover:underline transition-all duration-200 ease-in-out">{tip.name}</p>
+          <p className="h-12 overflow-hidden my-3 font-semibold lg:font-normal hover:underline transition-all duration-200 ease-in-out">{tip.name}</p>
         </div>
         <div className="mt-6 text-quaternary flex items-center gap-2">
           <span className="text-base font-medium">Read more</span>

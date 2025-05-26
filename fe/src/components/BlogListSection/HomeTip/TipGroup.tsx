@@ -13,11 +13,11 @@ interface TipGroupProps {
 }
 
 const TipGroup: React.FC<TipGroupProps> = ({ mainTip, subTips, otherTips, reverse = false }) => (
-  <div className=" px-[5%] mt-5 lg:mt-8 w-full max-w-320 mx-auto xl:px-0">
+  <div className=" px-[5%] mt-5 lg:mt-8 w-full max-w-320 mx-auto ">
     <div className={`flex flex-col lg:flex-row gap-8 ${reverse ? "lg:flex-row-reverse" : ""}`}>
       {mainTip && (
         <div className="lg:w-4/10">
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a className="h-full block" href="#" target="_blank" rel="noopener noreferrer">
             <MainTipCard tip={mainTip} />
           </a>
         </div>

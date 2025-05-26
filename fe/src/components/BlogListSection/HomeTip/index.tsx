@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { HomeTip } from "@/types/home-tip";
 import TipGroup from "./TipGroup";
 import Gallery from "./Gallery";
+import Title from "./Title";
 
 const HomeTipPage = () => {
   const [tips, setTips] = useState<HomeTip[]>([]);
@@ -12,11 +13,10 @@ const HomeTipPage = () => {
 
   useEffect(() => {
     const fetchTips = async () => {
-      const response = await fetch("http://localhost:3000/api/blogs?limit=100");
+      const response = await fetch("http://localhost:3000/api/blogs?limit=1000");
       const data = await response.json();
       const tipsArray = Array.isArray(data) ? data : data.docs;
 
-      // Lọc chỉ lấy tips có category là "home tips"
       const filteredTips = tipsArray.filter(
         (tip: HomeTip) => tip.category?.toLowerCase() === "home tips"
       );
@@ -43,9 +43,7 @@ const HomeTipPage = () => {
 
   return (
     <div className="py-8 ">
-      <h2 className="pl-[5%] text-2xl lg:text-[2rem] font-semibold text-gray-800 w-full max-w-320 mx-auto xl:pl-0">
-        Home Tips
-      </h2>
+      <Title/>
 
       <TipGroup
         mainTip={mainTipGroupA}
