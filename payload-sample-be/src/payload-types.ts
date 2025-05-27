@@ -209,7 +209,7 @@ export interface Blog {
    */
   categories?: string | null;
   /**
-   * URL hoặc đường dẫn hình ảnh dưới dạng chuỗi
+   * URL or String
    */
   thumbnailImage?: string | null;
   postSummary?: string | null;

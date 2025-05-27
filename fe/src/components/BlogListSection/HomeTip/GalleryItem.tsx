@@ -11,7 +11,7 @@ const GalleryItem = ({ img, title }: GalleryItemProps) => {
       <a href="#" className='flex items-center flex-col lg:px-4 group'>
         <div className='mb-2 lg:mb-3 p-3 rounded-full transition duration-300 group-hover:bg-primary/10'>
           <img
-            className='w-6 h-6 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:scale-110'
+            className='w-4 h-4 md:w-6 md:h-6 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:scale-110'
             src={img}
             alt={title}
           />
